@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur-md">
@@ -5,32 +7,36 @@ export default function Navbar() {
 
         {/* Logo */}
         <div>
-          <h1 className="text-2xl font-extrabold tracking-wide text-white">
-            All Clubs Community
-          </h1>
+          <Link href="/">
+            <h1 className="text-2xl font-extrabold tracking-wide text-white cursor-pointer">
+              All Clubs Community
+            </h1>
+          </Link>
         </div>
 
         {/* Navigation */}
         <div className="hidden items-center gap-10 text-gray-300 md:flex">
-          <a href="#" className="transition hover:text-white">
+
+          <Link href="/" className="transition hover:text-white">
             Home
-          </a>
+          </Link>
 
-          <a href="#clubs" className="transition hover:text-white">
+          <Link href="/clubs" className="transition hover:text-white">
             Clubs
-          </a>
+          </Link>
 
-          <a href="#events" className="transition hover:text-white">
+          <Link href="/events" className="transition hover:text-white">
             Events
-          </a>
+          </Link>
 
-          <a href="#about" className="transition hover:text-white">
+          <Link href="/about" className="transition hover:text-white">
             About
-          </a>
+          </Link>
 
-          <a href="#contact" className="transition hover:text-white">
+          <Link href="/contact" className="transition hover:text-white">
             Contact
-          </a>
+          </Link>
+
         </div>
 
         {/* Right Side */}
@@ -42,9 +48,12 @@ export default function Navbar() {
             <option>🇷🇺 RU</option>
           </select>
 
-          <button className="rounded-xl bg-white px-6 py-2 font-semibold text-black transition hover:scale-105 hover:bg-gray-200">
+          <Link
+            href="/login"
+            className="rounded-xl bg-white px-6 py-2 font-semibold text-black transition hover:scale-105 hover:bg-gray-200"
+          >
             Sign In
-          </button>
+          </Link>
 
         </div>
 
