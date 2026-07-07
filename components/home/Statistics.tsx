@@ -14,7 +14,7 @@ export default function Statistics() {
         </div>
 
         <div>
-          <h2 className="text-5xl font-black text-white">14</h2>
+          <h2 className="text-5xl font-black text-white">22</h2>
           <p className="mt-3 text-gray-400">Events</p>
         </div>
 

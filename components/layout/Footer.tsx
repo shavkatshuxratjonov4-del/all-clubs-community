@@ -130,7 +130,7 @@ export default function Footer() {
             <div className="mt-6 space-y-3 text-gray-400">
 
               <p>
-                Tashkent State Agrarian University
+                All Clubs Community
               </p>
 
               <p>
