@@ -4,7 +4,7 @@ export default function Statistics() {
       <div className="grid grid-cols-2 gap-10 md:grid-cols-4 text-center">
 
         <div>
-          <h2 className="text-5xl font-black text-white">5</h2>
+          <h2 className="text-5xl font-black text-white">6</h2>
           <p className="mt-3 text-gray-400">Student Clubs</p>
         </div>
 
