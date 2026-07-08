@@ -128,3 +128,161 @@
     @apply font-sans;
   }
 }
+@keyframes partner-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-marquee {
+  animation: partner-marquee 20s linear infinite;
+}
+
+.partner-marquee:hover {
+  animation-play-state: paused;
+}
+/* ========================= */
+/* Counter Motion System v1  */
+/* ========================= */
+
+.counter-ray {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 2px;
+  height: 38px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    to top,
+    transparent,
+    #22c55e,
+    #bbf7d0,
+    transparent
+  );
+
+  transform-origin: center bottom;
+
+  animation: counterRay .8s ease-out forwards;
+
+  pointer-events: none;
+}
+
+.ray-1 {
+  transform: translate(-50%, -50%) rotate(0deg) translateY(-42px);
+}
+
+.ray-2 {
+  transform: translate(-50%, -50%) rotate(60deg) translateY(-42px);
+}
+
+.ray-3 {
+  transform: translate(-50%, -50%) rotate(120deg) translateY(-42px);
+}
+
+.ray-4 {
+  transform: translate(-50%, -50%) rotate(180deg) translateY(-42px);
+}
+
+.ray-5 {
+  transform: translate(-50%, -50%) rotate(240deg) translateY(-42px);
+}
+
+.ray-6 {
+  transform: translate(-50%, -50%) rotate(300deg) translateY(-42px);
+}
+
+@keyframes counterRay {
+
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.2);
+  }
+
+  30%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+  }
+
+}
+/* ===================== */
+/* iMessage Laser Effect */
+/* ===================== */
+
+.laser-ray {
+
+  position: absolute;
+
+  width: 3px;
+
+  height: 160px;
+
+  border-radius: 999px;
+
+  background:
+      linear-gradient(
+      to top,
+      transparent,
+      rgba(34,197,94,.4),
+      rgba(74,222,128,1),
+      rgba(187,247,208,1),
+      transparent);
+
+  transform:
+      rotate(var(--angle))
+      translateY(-90px)
+      scaleY(.15);
+
+  opacity:0;
+
+  filter:
+      blur(.3px)
+      drop-shadow(0 0 8px #22c55e)
+      drop-shadow(0 0 18px #22c55e)
+      drop-shadow(0 0 34px #22c55e);
+
+  animation:laserBurst .8s ease-out forwards;
+
+}
+
+@keyframes laserBurst{
+
+0%{
+
+opacity:0;
+
+transform:
+rotate(var(--angle))
+translateY(-10px)
+scaleY(.05);
+
+}
+
+15%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+rotate(var(--angle))
+translateY(-120px)
+scaleY(1);
+
+}
+
+}

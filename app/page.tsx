@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/Navbar";
+import Navbar from "@/components/navigation/Navbar";
 import Hero from "@/components/home/Hero";
 import Statistics from "@/components/home/Statistics";
 import Clubs from "@/components/home/Clubs";
@@ -10,11 +10,17 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
+
       <Hero />
+
       <Statistics />
+
       <Clubs />
+
       <Events />
+
       <News />
+
       <Partners />
     </main>
   );

@@ -19,58 +19,44 @@ export default function EventCard({
       }`}
     >
       {/* Event Image */}
-
       <div className="relative h-64 w-full overflow-hidden">
         <Image
           src={event.image}
           alt={event.title}
           fill
-          className="object-cover transition duration-500 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 700px"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          priority={active}
         />
       </div>
 
       {/* Content */}
-
       <div className="p-6">
-
         {/* Club */}
-
         <span className="rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
           {event.club}
         </span>
 
         {/* Title */}
-
         <h3 className="mt-4 text-3xl font-black text-white">
           {event.title}
         </h3>
 
         {/* Description */}
-
-        <p className="mt-4 text-zinc-400 leading-7">
+        <p className="mt-4 leading-7 text-zinc-400">
           {event.description}
         </p>
 
         {/* Info */}
-
         <div className="mt-6 space-y-2 text-sm text-zinc-300">
-
-          <p>
-            📅 {new Date(event.startDate).toLocaleDateString()}
-          </p>
-
-          <p>
-            📍 {event.location}
-          </p>
-
+          <p>📅 {new Date(event.startDate).toLocaleDateString()}</p>
+          <p>📍 {event.location}</p>
         </div>
 
         {/* Button */}
-
-        <button className="mt-8 w-full rounded-xl bg-green-600 py-3 font-semibold text-white transition hover:bg-green-700 hover:scale-105">
+        <button className="mt-8 w-full rounded-xl bg-green-600 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-700">
           View Details →
         </button>
-
       </div>
     </div>
   );
