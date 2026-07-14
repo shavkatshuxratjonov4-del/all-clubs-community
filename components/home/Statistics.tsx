@@ -13,14 +13,14 @@ export default function Statistics() {
         </div>
 
         <div>
-          <AnimatedCounter end={250} />
+          <AnimatedCounter end={0} />
           <p className="mt-3 text-gray-400">
             Students
           </p>
         </div>
 
         <div>
-          <AnimatedCounter end={22} />
+          <AnimatedCounter end={0} />
           <p className="mt-3 text-gray-400">
             Events
           </p>
