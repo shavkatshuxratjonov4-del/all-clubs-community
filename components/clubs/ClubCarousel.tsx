@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import {
   Carousel,
@@ -6,21 +7,34 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { clubs } from "./clubsData";
+
 import ClubMobileCard from "./ClubMobileCard";
-export default function ClubCarousel() {
+import { Club } from "./types";
+
+interface ClubCarouselProps {
+  clubs: Club[];
+}
+
+export default function ClubCarousel({
+  clubs,
+}: ClubCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+
   React.useEffect(() => {
     if (!api) return;
+
     setCurrent(api.selectedScrollSnap());
+
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
+
     api.on("reInit", () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
+
   return (
     <div className="mt-12 w-full">
       <Carousel
@@ -50,7 +64,7 @@ export default function ClubCarousel() {
           ))}
         </CarouselContent>
       </Carousel>
-      {/* Pagination */}
+
       <div className="mt-6 flex items-center justify-center gap-2">
         {clubs.map((_, index) => (
           <button
