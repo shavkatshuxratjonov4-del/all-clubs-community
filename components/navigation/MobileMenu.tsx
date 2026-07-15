@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { navLinks } from "./navLinks";
 
 interface MobileMenuProps {
@@ -34,11 +36,13 @@ export default function MobileMenu({
           right-0
           top-0
           z-50
+          flex
           h-screen
           w-80
-          bg-zinc-950
+          flex-col
           border-l
           border-zinc-800
+          bg-zinc-950
           transition-transform
           duration-300
           ${
@@ -48,8 +52,8 @@ export default function MobileMenu({
           }
         `}
       >
+        {/* Header */}
         <div className="flex items-center justify-between border-b border-zinc-800 p-6">
-
           <h2 className="text-xl font-bold">
             Menu
           </h2>
@@ -60,13 +64,12 @@ export default function MobileMenu({
           >
             ×
           </button>
-
         </div>
 
-        <nav className="flex flex-col p-6">
-
+        {/* Navigation */}
+        <nav className="flex flex-1 flex-col p-6">
           {navLinks.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={onClose}
@@ -81,26 +84,33 @@ export default function MobileMenu({
               "
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-
         </nav>
 
-        <div className="mt-auto p-6">
-          <button
+        {/* Login Button */}
+        <div className="p-6">
+          <Link
+            href="/login"
+            onClick={onClose}
             className="
+              flex
               w-full
+              items-center
+              justify-center
               rounded-xl
               bg-green-600
               py-3
               font-semibold
+              text-white
+              transition-all
+              duration-300
               hover:bg-green-700
             "
           >
-            Sign In
-          </button>
+            Login
+          </Link>
         </div>
-
       </aside>
     </>
   );

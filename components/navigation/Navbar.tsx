@@ -7,6 +7,7 @@ import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
+import AuthButton from "./AuthButton";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,14 +27,22 @@ export default function Navbar() {
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
+          {/* Logo */}
           <Logo />
 
+          {/* Desktop Navigation */}
           <DesktopNav />
 
+          {/* Right Side */}
           <div className="flex items-center gap-3">
 
+            {/* Language */}
             <LanguageSwitcher />
 
+            {/* Authentication */}
+            <AuthButton />
+
+            {/* Mobile Menu */}
             <div
               className="lg:hidden"
               onClick={() => setOpen(true)}

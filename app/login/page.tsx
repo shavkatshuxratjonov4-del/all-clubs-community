@@ -1,7 +1,13 @@
-export default function Page() {
+import AuthCard from "@/components/auth/AuthCard";
+import LoginForm from "@/components/auth/LoginForm";
+
+export default function LoginPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-black text-white">
-      <h1 className="text-5xl font-bold">Coming Soon</h1>
-    </main>
+    <AuthCard
+      title="Login"
+      description="Welcome back to TDAU All Clubs Community"
+    >
+      <LoginForm />
+    </AuthCard>
   );
 }
