@@ -19,11 +19,16 @@ export default function ClubGrid() {
       setClubs(
         data.map((club) => ({
           id: club.id,
+          slug: club.slug,
+
           name: club.name,
           description: club.short_description,
+
           logo: club.logo_url ?? "",
+
           members: club.members_count,
           events: club.events_count,
+
           color: club.button_color ?? "green",
         }))
       );

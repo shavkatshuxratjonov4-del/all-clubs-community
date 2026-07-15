@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { Club } from "./types";
 
 interface ClubMobileCardProps {
@@ -43,7 +45,6 @@ export default function ClubMobileCard({
       className={`rounded-3xl border ${color.border} bg-zinc-900 p-6`}
     >
       {/* Logo */}
-
       <div className="flex justify-center">
         <Image
           src={club.logo}
@@ -55,21 +56,17 @@ export default function ClubMobileCard({
       </div>
 
       {/* Title */}
-
       <h3 className="mt-5 text-center text-2xl font-bold text-white">
         {club.name}
       </h3>
 
       {/* Description */}
-
       <p className="mt-3 text-center text-sm leading-6 text-zinc-400">
         {club.description}
       </p>
 
       {/* Statistics */}
-
       <div className="mt-6 flex items-center justify-center gap-10">
-
         <div className="text-center">
           <p className="text-2xl font-bold text-white">
             {club.members}
@@ -89,16 +86,15 @@ export default function ClubMobileCard({
             Events
           </span>
         </div>
-
       </div>
 
-      {/* Button */}
-
-      <button
-        className={`mt-7 w-full rounded-xl py-3 font-semibold text-white transition ${color.button}`}
+      {/* Learn More */}
+      <Link
+        href={`/clubs/${club.slug}`}
+        className={`mt-7 block w-full rounded-xl py-3 text-center font-semibold text-white transition ${color.button}`}
       >
         Learn More →
-      </button>
+      </Link>
     </div>
   );
 }

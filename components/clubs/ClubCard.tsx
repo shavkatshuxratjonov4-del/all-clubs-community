@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { Club } from "./types";
 
 interface ClubCardProps {
@@ -93,13 +95,14 @@ export default function ClubCard({ club }: ClubCardProps) {
         </div>
       </div>
 
-      {/* Button */}
+      {/* Learn More */}
       <div className="mt-auto pt-8">
-        <button
-          className={`w-full rounded-xl px-6 py-3 font-semibold transition-all duration-300 hover:scale-105 ${color.button}`}
+        <Link
+          href={`/clubs/${club.slug}`}
+          className={`block w-full rounded-xl px-6 py-3 text-center font-semibold transition-all duration-300 hover:scale-105 ${color.button}`}
         >
           Learn More →
-        </button>
+        </Link>
       </div>
     </div>
   );

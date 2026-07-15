@@ -43,3 +43,18 @@ export async function getClubs(): Promise<Club[]> {
 
   return data as Club[];
 }
+export async function getClubBySlug(slug: string): Promise<Club | null> {
+  const { data, error } = await supabase
+    .from("clubs")
+    .select("*")
+    .eq("slug", slug)
+    .eq("status", "active")
+    .single();
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  return data as Club;
+}
