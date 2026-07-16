@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 
 import Logo from "./Logo";
 import DesktopNav from "./DesktopNav";
@@ -9,8 +10,39 @@ import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import AuthButton from "./AuthButton";
 
+import { supabase } from "@/lib/supabase/client";
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const [user, setUser] =
+    useState<User | null>(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  useEffect(() => {
+    async function loadSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      setUser(session?.user ?? null);
+      setLoading(false);
+    }
+
+    loadSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(
+      (_, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <>
@@ -27,22 +59,19 @@ export default function Navbar() {
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
-          {/* Logo */}
           <Logo />
 
-          {/* Desktop Navigation */}
           <DesktopNav />
 
-          {/* Right Side */}
           <div className="flex items-center gap-3">
 
-            {/* Language */}
             <LanguageSwitcher />
 
-            {/* Authentication */}
-            <AuthButton />
+            <AuthButton
+              user={user}
+              loading={loading}
+            />
 
-            {/* Mobile Menu */}
             <div
               className="lg:hidden"
               onClick={() => setOpen(true)}
@@ -58,6 +87,7 @@ export default function Navbar() {
       <MobileMenu
         open={open}
         onClose={() => setOpen(false)}
+        user={user}
       />
     </>
   );

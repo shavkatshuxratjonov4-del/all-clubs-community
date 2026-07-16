@@ -1,37 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 
-import { supabase } from "@/lib/supabase/client";
 import UserMenu from "./UserMenu";
 
-export default function AuthButton() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+interface AuthButtonProps {
+  user: User | null;
+  loading: boolean;
+}
 
-  useEffect(() => {
-    async function loadUser() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      setUser(user);
-      setLoading(false);
-    }
-
-    loadUser();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
+export default function AuthButton({
+  user,
+  loading,
+}: AuthButtonProps) {
   if (loading) {
     return (
       <div className="hidden lg:block text-zinc-500">

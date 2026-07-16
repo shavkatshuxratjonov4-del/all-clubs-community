@@ -6,6 +6,7 @@ import ClubHero from "@/components/clubs/detail/ClubHero";
 import ClubInfo from "@/components/clubs/detail/ClubInfo";
 import ClubSocials from "@/components/clubs/detail/ClubSocials";
 import JoinClubButton from "@/components/clubs/detail/JoinClubButton";
+import FloatingNavigation from "@/components/clubs/detail/FloatingNavigation";
 
 export default async function ClubPage({
   params,
@@ -22,12 +23,9 @@ export default async function ClubPage({
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
-
       <ClubHero club={club} />
 
-      <ClubInfo
-        description={club.description}
-      />
+      <ClubInfo description={club.description} />
 
       <ClubSocials
         telegram={club.telegram}
@@ -36,8 +34,9 @@ export default async function ClubPage({
         website={club.website}
       />
 
-      <JoinClubButton />
+      <JoinClubButton clubId={club.id} />
 
+      <FloatingNavigation />
     </main>
   );
 }

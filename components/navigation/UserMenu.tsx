@@ -26,7 +26,7 @@ export default function UserMenu({ user }: UserMenuProps) {
     <div className="relative hidden lg:block">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800 transition"
+        className="flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2 text-white transition hover:bg-zinc-800"
       >
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 font-bold">
           {displayName.charAt(0).toUpperCase()}
@@ -54,28 +54,37 @@ export default function UserMenu({ user }: UserMenuProps) {
 
             <Link
               href="/profile"
-              className="rounded-lg px-3 py-2 hover:bg-zinc-900"
+              className="rounded-lg px-3 py-2 transition hover:bg-zinc-900"
             >
               👤 My Profile
             </Link>
 
             <Link
+              href="/my-id"
+              className="rounded-lg px-3 py-2 transition hover:bg-zinc-900"
+            >
+              🪪 Digital Student ID
+            </Link>
+
+            <Link
               href="/my-clubs"
-              className="rounded-lg px-3 py-2 hover:bg-zinc-900"
+              className="rounded-lg px-3 py-2 transition hover:bg-zinc-900"
             >
               🌱 My Clubs
             </Link>
 
             <Link
               href="/settings"
-              className="rounded-lg px-3 py-2 hover:bg-zinc-900"
+              className="rounded-lg px-3 py-2 transition hover:bg-zinc-900"
             >
               ⚙️ Settings
             </Link>
 
+            <hr className="my-2 border-zinc-800" />
+
             <button
               onClick={handleLogout}
-              className="mt-2 rounded-lg px-3 py-2 text-left text-red-400 hover:bg-red-950"
+              className="rounded-lg px-3 py-2 text-left text-red-400 transition hover:bg-red-950"
             >
               🚪 Logout
             </button>
