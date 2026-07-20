@@ -5,39 +5,45 @@ interface StudentStatusProps {
 export default function StudentStatus({
   status,
 }: StudentStatusProps) {
-  const currentStatus =
-    status?.toLowerCase() ?? "active";
+  const currentStatus = (status ?? "no_active_event").toLowerCase();
 
   const styles = {
-    active: {
-      label: "Active Student",
-      dot: "bg-green-500",
-      text: "text-green-400",
-      border: "border-green-500/30",
-      bg: "bg-green-500/10",
+    no_active_event: {
+      label: "No Active Event",
+      dot: "bg-slate-500",
+      text: "text-slate-300",
+      border: "border-slate-500/30",
+      bg: "bg-slate-500/10",
     },
 
-    pending: {
-      label: "Pending Verification",
-      dot: "bg-yellow-500",
-      text: "text-yellow-400",
-      border: "border-yellow-500/30",
-      bg: "bg-yellow-500/10",
+    registered: {
+      label: "Registered",
+      dot: "bg-blue-500",
+      text: "text-blue-400",
+      border: "border-blue-500/30",
+      bg: "bg-blue-500/10",
     },
 
-    suspended: {
-      label: "Suspended",
-      dot: "bg-red-500",
-      text: "text-red-400",
-      border: "border-red-500/30",
-      bg: "bg-red-500/10",
+    checked_in: {
+      label: "Checked In",
+      dot: "bg-emerald-500",
+      text: "text-emerald-400",
+      border: "border-emerald-500/30",
+      bg: "bg-emerald-500/10",
+    },
+
+    attended: {
+      label: "Attended",
+      dot: "bg-purple-500",
+      text: "text-purple-400",
+      border: "border-purple-500/30",
+      bg: "bg-purple-500/10",
     },
   };
 
   const style =
-    styles[
-      currentStatus as keyof typeof styles
-    ] ?? styles.active;
+    styles[currentStatus as keyof typeof styles] ??
+    styles.no_active_event;
 
   return (
     <div

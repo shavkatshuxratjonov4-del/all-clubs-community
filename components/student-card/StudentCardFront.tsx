@@ -1,5 +1,4 @@
 import StudentPhoto from "./StudentPhoto";
-import StudentStatus from "./StudentStatus";
 import StudentBadges from "./StudentBadges";
 
 interface StudentCardFrontProps {
@@ -8,7 +7,6 @@ interface StudentCardFrontProps {
   studentId: string;
   faculty: string;
   group: string;
-  status?: string | null;
   points: number;
 }
 
@@ -18,7 +16,6 @@ export default function StudentCardFront({
   studentId,
   faculty,
   group,
-  status,
   points,
 }: StudentCardFrontProps) {
   return (
@@ -79,12 +76,9 @@ export default function StudentCardFront({
       />
 
       <div className="relative z-10">
-
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
-
           <div className="flex-1">
-
             <p className="text-[10px] font-semibold uppercase tracking-[0.30em] text-green-300 sm:text-xs">
               Toshkent Davlat Agrar Universiteti
             </p>
@@ -92,11 +86,7 @@ export default function StudentCardFront({
             <h2 className="mt-1 text-xl font-black sm:mt-2 sm:text-3xl">
               Digital Student ID
             </h2>
-
           </div>
-
-          <StudentStatus status={status} />
-
         </div>
 
         {/* Avatar */}
@@ -109,7 +99,6 @@ export default function StudentCardFront({
 
         {/* Name */}
         <div className="mt-3 text-center sm:mt-5">
-
           <h3 className="text-xl font-black sm:text-3xl">
             {fullName}
           </h3>
@@ -117,14 +106,11 @@ export default function StudentCardFront({
           <p className="mt-1 text-xs tracking-[0.22em] text-zinc-400 sm:mt-2 sm:text-sm">
             {studentId}
           </p>
-
         </div>
 
         {/* Information */}
         <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-7 sm:gap-4">
-
           <div className="rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl sm:p-4">
-
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-400">
               Faculty
             </p>
@@ -132,11 +118,9 @@ export default function StudentCardFront({
             <p className="mt-2 text-xs font-bold leading-5 sm:text-base">
               {faculty}
             </p>
-
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl sm:p-4">
-
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-400">
               Group
             </p>
@@ -144,18 +128,13 @@ export default function StudentCardFront({
             <p className="mt-2 text-base font-black sm:text-lg">
               {group}
             </p>
-
           </div>
-
         </div>
 
         {/* Reputation */}
         <div className="mt-5 rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl sm:mt-6 sm:p-5">
-
           <div className="flex items-start justify-between gap-4">
-
             <div className="flex-1">
-
               <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-400">
                 Community Reputation
               </p>
@@ -169,15 +148,10 @@ export default function StudentCardFront({
                 attending events and contributing to
                 university life.
               </p>
-
             </div>
 
-            <StudentBadges
-              points={points}
-            />
-
+            <StudentBadges points={points} />
           </div>
-
         </div>
 
         {/* Divider */}
@@ -185,9 +159,7 @@ export default function StudentCardFront({
 
         {/* Footer */}
         <div className="flex items-center justify-between">
-
           <div>
-
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">
               Platform
             </p>
@@ -195,11 +167,9 @@ export default function StudentCardFront({
             <p className="mt-1 text-sm font-semibold sm:text-base">
               All Clubs Community
             </p>
-
           </div>
 
           <div className="text-right">
-
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">
               University
             </p>
@@ -207,11 +177,8 @@ export default function StudentCardFront({
             <p className="mt-1 text-sm font-semibold sm:text-base">
               TDAU
             </p>
-
           </div>
-
         </div>
-
       </div>
     </div>
   );

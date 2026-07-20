@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
 interface StudentQRCodeProps {
@@ -10,83 +10,138 @@ interface StudentQRCodeProps {
 
 export default function StudentQRCode({
   studentId,
-  logo = "/images/tdau.png",
+  logo = "/images/acc.svg",
 }: StudentQRCodeProps) {
-  const [size, setSize] = useState(260);
+  const [size, setSize] = useState(300);
 
   useEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth < 640) {
-        setSize(190);
-      } else {
-        setSize(260);
-      }
+      setSize(window.innerWidth < 640 ? 220 : 300);
     };
 
     updateSize();
 
     window.addEventListener("resize", updateSize);
 
-    return () =>
+    return () => {
       window.removeEventListener("resize", updateSize);
+    };
   }, []);
 
-  const qrValue = JSON.stringify({
-    v: 1,
-    type: "student",
-    id: studentId,
-  });
+  const qrValue = useMemo(() => {
+    return `https://clubs.tdau.uz/id/${studentId}`;
+  }, [studentId]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex w-full flex-col items-center">
+
+      {/* QR PANEL */}
 
       <div
         className="
-          rounded-[24px]
-          bg-white
-          p-3
-          shadow-[0_20px_60px_rgba(0,0,0,.25)]
-          sm:rounded-[28px]
-          sm:p-5
+          w-full
+          max-w-[360px]
+          rounded-[30px]
+          border
+          border-white/20
+          bg-gradient-to-b
+          from-[#F7FAF8]
+          via-[#F2F7F4]
+          to-[#EDF4F0]
+          p-6
+          shadow-[0_20px_60px_rgba(0,0,0,.22)]
         "
       >
 
-        <QRCodeSVG
-          value={qrValue}
-          size={size}
-          level="H"
-          bgColor="#ffffff"
-          fgColor="#111827"
-          includeMargin={false}
-          imageSettings={{
-            src: logo,
-            height: size * 0.18,
-            width: size * 0.18,
-            excavate: true,
-          }}
-        />
+        <div className="flex justify-center">
+
+          <QRCodeSVG
+            value={qrValue}
+            size={size}
+            level="H"
+            includeMargin={false}
+            bgColor="#FFFFFF"
+            fgColor="#111827"
+            imageSettings={{
+              src: logo,
+              width: size * 0.20,
+              height: size * 0.20,
+              excavate: true,
+            }}
+          />
+
+        </div>
 
       </div>
 
-      <div className="mt-3 text-center sm:mt-5">
+      {/* STUDENT ID */}
 
-        <p className="text-[10px] uppercase tracking-[0.30em] text-zinc-500 sm:text-xs">
+      <div className="mt-7 text-center">
+
+        <p
+          className="
+            text-[11px]
+            uppercase
+            tracking-[0.34em]
+            text-zinc-400
+          "
+        >
           Student ID
         </p>
 
-        <p className="mt-1 text-sm font-black tracking-wider text-white sm:mt-2 sm:text-lg">
+        <p
+          className="
+            mt-2
+            text-xl
+            font-black
+            tracking-[0.18em]
+            text-white
+          "
+        >
           {studentId}
         </p>
+        <div
+          className="
+            mt-6
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-emerald-500/30
+            bg-emerald-500/10
+            px-5
+            py-2
+            backdrop-blur-sm
+          "
+        >
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
 
-        <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-2 sm:mt-5 sm:px-4">
-
-          <span className="h-2 w-2 rounded-full bg-green-400" />
-
-          <span className="text-xs font-semibold text-green-300 sm:text-sm">
-            Ready for Verification
+          <span
+            className="
+              text-sm
+              font-semibold
+              text-emerald-300
+            "
+          >
+            Scan by Club Admin
           </span>
-
         </div>
+
+        <p
+          className="
+            mx-auto
+            mt-5
+            max-w-[290px]
+            text-sm
+            leading-7
+            text-zinc-400
+          "
+        >
+          This permanent QR code is used for student identity verification,
+          event registration confirmation and attendance tracking within
+          All Clubs Community.
+        </p>
 
       </div>
 
