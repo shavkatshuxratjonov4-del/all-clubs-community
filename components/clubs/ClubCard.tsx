@@ -48,7 +48,6 @@ export default function ClubCard({ club }: ClubCardProps) {
     <div
       className={`group flex h-full flex-col rounded-3xl border border-zinc-800 bg-zinc-900 p-7 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl ${color.border} ${color.shadow}`}
     >
-      {/* Logo */}
       <div className="flex justify-center">
         <Image
           src={club.logo}
@@ -59,43 +58,58 @@ export default function ClubCard({ club }: ClubCardProps) {
         />
       </div>
 
-      {/* Club Name */}
       <h3 className="mt-6 text-center text-3xl font-extrabold tracking-wide text-white">
         {club.name}
       </h3>
 
-      {/* Description */}
       <p className="mt-4 min-h-[72px] text-center text-sm leading-7 text-zinc-300">
         {club.description}
       </p>
 
-      {/* Divider */}
       <div className="my-6 border-t border-zinc-800" />
 
-      {/* Statistics */}
-      <div className="flex justify-center gap-8 text-center">
-        <div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">
             {club.members}
           </p>
 
-          <p className="text-xs uppercase tracking-widest text-zinc-500">
+          <p className="mt-1 text-xs uppercase tracking-widest text-zinc-500">
             Members
           </p>
         </div>
 
-        <div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">
             {club.events}
           </p>
 
-          <p className="text-xs uppercase tracking-widest text-zinc-500">
+          <p className="mt-1 text-xs uppercase tracking-widest text-zinc-500">
             Events
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4 text-center">
+          <p className="text-2xl font-bold text-white">
+            {club.news}
+          </p>
+
+          <p className="mt-1 text-xs uppercase tracking-widest text-zinc-500">
+            News
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4 text-center">
+          <p className="text-2xl font-bold text-white">
+            {club.gallery}
+          </p>
+
+          <p className="mt-1 text-xs uppercase tracking-widest text-zinc-500">
+            Gallery
           </p>
         </div>
       </div>
 
-      {/* Learn More */}
       <div className="mt-auto pt-8">
         <Link
           href={`/clubs/${club.slug}`}

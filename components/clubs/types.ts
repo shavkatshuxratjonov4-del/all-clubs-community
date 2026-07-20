@@ -13,5 +13,9 @@ export interface Club {
 
   events: number;
 
+  news: number;
+
+  gallery: number;
+
   color: string;
 }

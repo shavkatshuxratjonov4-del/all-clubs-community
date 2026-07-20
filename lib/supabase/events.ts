@@ -1,13 +1,12 @@
 import { supabase } from "./client";
 
-export async function getClubCount() {
+export async function getEventCount() {
   const { count, error } = await supabase
-    .from("clubs")
+    .from("events")
     .select("*", {
       count: "exact",
       head: true,
-    })
-    .eq("status", "active");
+    });
 
   if (error) {
     console.error(error);

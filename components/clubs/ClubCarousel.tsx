@@ -33,6 +33,11 @@ export default function ClubCarousel({
     api.on("reInit", () => {
       setCurrent(api.selectedScrollSnap());
     });
+
+    return () => {
+      api.off("select", () => {});
+      api.off("reInit", () => {});
+    };
   }, [api]);
 
   return (

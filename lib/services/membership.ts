@@ -2,8 +2,9 @@ import { supabase } from "@/lib/supabase/client";
 
 export type MembershipStatus =
   | "pending"
-  | "approved"
+  | "active"
   | "rejected"
+  | "left"
   | null;
 
 /**
@@ -21,7 +22,7 @@ export async function getMembershipStatus(
     .maybeSingle();
 
   if (error) {
-    console.error("STATUS ERROR:", error);
+    console.error(error);
     return null;
   }
 
@@ -42,13 +43,28 @@ export async function joinClub(
       profile_id: profileId,
       status: "pending",
     })
-    .select();
-
-  console.log("JOIN RESULT:", data);
-  console.error("JOIN ERROR:", error);
+    .select()
+    .single();
 
   return {
     data,
     error,
   };
+}
+
+/**
+ * Clubdan chiqish
+ */
+export async function leaveClub(
+  clubId: string,
+  profileId: string
+) {
+  return await supabase
+    .from("club_members")
+    .update({
+      status: "left",
+      left_at: new Date().toISOString(),
+    })
+    .eq("club_id", clubId)
+    .eq("profile_id", profileId);
 }

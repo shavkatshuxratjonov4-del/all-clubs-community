@@ -6,7 +6,7 @@ import ClubCard from "./ClubCard";
 import ClubCarousel from "./ClubCarousel";
 
 import { Club } from "./types";
-import { getClubs } from "@/lib/services/clubs";
+import { getClubsWithStatistics } from "@/lib/services/clubs";
 
 export default function ClubGrid() {
   const [clubs, setClubs] = useState<Club[]>([]);
@@ -14,7 +14,7 @@ export default function ClubGrid() {
 
   useEffect(() => {
     async function load() {
-      const data = await getClubs();
+      const data = await getClubsWithStatistics();
 
       setClubs(
         data.map((club) => ({
@@ -22,12 +22,15 @@ export default function ClubGrid() {
           slug: club.slug,
 
           name: club.name,
-          description: club.short_description,
+
+          description: "",
 
           logo: club.logo_url ?? "",
 
-          members: club.members_count,
-          events: club.events_count,
+          members: club.members,
+          events: club.events,
+          news: club.news,
+          gallery: club.gallery,
 
           color: club.button_color ?? "green",
         }))

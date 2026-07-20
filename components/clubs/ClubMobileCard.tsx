@@ -44,7 +44,6 @@ export default function ClubMobileCard({
     <div
       className={`rounded-3xl border ${color.border} bg-zinc-900 p-6`}
     >
-      {/* Logo */}
       <div className="flex justify-center">
         <Image
           src={club.logo}
@@ -55,40 +54,56 @@ export default function ClubMobileCard({
         />
       </div>
 
-      {/* Title */}
       <h3 className="mt-5 text-center text-2xl font-bold text-white">
         {club.name}
       </h3>
 
-      {/* Description */}
-      <p className="mt-3 text-center text-sm leading-6 text-zinc-400">
+      <p className="mt-3 min-h-[48px] text-center text-sm leading-6 text-zinc-400">
         {club.description}
       </p>
 
-      {/* Statistics */}
-      <div className="mt-6 flex items-center justify-center gap-10">
-        <div className="text-center">
-          <p className="text-2xl font-bold text-white">
+      <div className="mt-6 grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-3 text-center">
+          <p className="text-xl font-bold text-white">
             {club.members}
           </p>
 
-          <span className="text-xs uppercase tracking-wider text-zinc-500">
+          <span className="mt-1 block text-[10px] uppercase tracking-wider text-zinc-500">
             Members
           </span>
         </div>
 
-        <div className="text-center">
-          <p className="text-2xl font-bold text-white">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-3 text-center">
+          <p className="text-xl font-bold text-white">
             {club.events}
           </p>
 
-          <span className="text-xs uppercase tracking-wider text-zinc-500">
+          <span className="mt-1 block text-[10px] uppercase tracking-wider text-zinc-500">
             Events
+          </span>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-3 text-center">
+          <p className="text-xl font-bold text-white">
+            {club.news}
+          </p>
+
+          <span className="mt-1 block text-[10px] uppercase tracking-wider text-zinc-500">
+            News
+          </span>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-3 text-center">
+          <p className="text-xl font-bold text-white">
+            {club.gallery}
+          </p>
+
+          <span className="mt-1 block text-[10px] uppercase tracking-wider text-zinc-500">
+            Gallery
           </span>
         </div>
       </div>
 
-      {/* Learn More */}
       <Link
         href={`/clubs/${club.slug}`}
         className={`mt-7 block w-full rounded-xl py-3 text-center font-semibold text-white transition ${color.button}`}

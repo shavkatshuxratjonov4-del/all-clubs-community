@@ -3,15 +3,24 @@
 import { useEffect, useState } from "react";
 
 import AnimatedCounter from "./AnimatedCounter";
-import { getStudentCount } from "@/lib/supabase/statistics";
+import {
+  getPlatformStatistics,
+  PlatformStatistics,
+} from "@/lib/supabase/statistics";
 
 export default function Statistics() {
-  const [students, setStudents] = useState(0);
+  const [statistics, setStatistics] =
+    useState<PlatformStatistics>({
+      clubs: 0,
+      students: 0,
+      events: 0,
+      partners: 0,
+    });
 
   useEffect(() => {
     async function loadStatistics() {
-      const totalStudents = await getStudentCount();
-      setStudents(totalStudents);
+      const data = await getPlatformStatistics();
+      setStatistics(data);
     }
 
     loadStatistics();
@@ -22,28 +31,36 @@ export default function Statistics() {
       <div className="grid grid-cols-2 gap-10 text-center md:grid-cols-4">
 
         <div>
-          <AnimatedCounter end={6} />
+          <AnimatedCounter
+            end={statistics.clubs}
+          />
           <p className="mt-3 text-gray-400">
             Student Clubs
           </p>
         </div>
 
         <div>
-          <AnimatedCounter end={students} />
+          <AnimatedCounter
+            end={statistics.students}
+          />
           <p className="mt-3 text-gray-400">
             Students
           </p>
         </div>
 
         <div>
-          <AnimatedCounter end={0} />
+          <AnimatedCounter
+            end={statistics.events}
+          />
           <p className="mt-3 text-gray-400">
             Events
           </p>
         </div>
 
         <div>
-          <AnimatedCounter end={3} />
+          <AnimatedCounter
+            end={statistics.partners}
+          />
           <p className="mt-3 text-gray-400">
             Partners
           </p>

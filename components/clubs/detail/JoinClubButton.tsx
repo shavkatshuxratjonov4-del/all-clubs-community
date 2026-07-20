@@ -50,7 +50,6 @@ export default function JoinClubButton({
       );
 
     setStatus(membershipStatus);
-
     setLoading(false);
   }
 
@@ -63,12 +62,11 @@ export default function JoinClubButton({
       router.push(
         `/login?redirect=/clubs/${clubId}&action=join`
       );
-
       return;
     }
 
     if (
-      status === "approved" ||
+      status === "active" ||
       status === "pending"
     ) {
       return;
@@ -78,18 +76,22 @@ export default function JoinClubButton({
   }
 
   function buttonText() {
-    if (loading)
+    if (loading) {
       return "Loading...";
+    }
 
     switch (status) {
-      case "approved":
+      case "active":
         return "✅ Joined";
 
       case "pending":
         return "⏳ Pending Approval";
 
       case "rejected":
-        return "Apply Again";
+        return "🔄 Apply Again";
+
+      case "left":
+        return "🚀 Rejoin Club";
 
       default:
         return "🚀 Join Club";
@@ -111,7 +113,6 @@ export default function JoinClubButton({
         "
       >
         <div className="mx-auto max-w-3xl text-center">
-
           <h2 className="text-4xl font-black">
             Ready to Join?
           </h2>
@@ -122,11 +123,12 @@ export default function JoinClubButton({
             improve your skills and meet
             students with the same interests.
           </p>
+
           <button
             onClick={handleJoinClick}
             disabled={
               loading ||
-              status === "approved" ||
+              status === "active" ||
               status === "pending"
             }
             className="
@@ -148,7 +150,6 @@ export default function JoinClubButton({
           >
             {buttonText()}
           </button>
-
         </div>
       </section>
 
