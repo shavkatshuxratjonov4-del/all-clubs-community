@@ -7,6 +7,7 @@ interface StudentCardFrontProps {
   studentId: string;
   faculty: string;
   group: string;
+  status?: string | null;
   points: number;
 }
 
@@ -16,6 +17,7 @@ export default function StudentCardFront({
   studentId,
   faculty,
   group,
+  status,
   points,
 }: StudentCardFrontProps) {
   return (
@@ -127,6 +129,16 @@ export default function StudentCardFront({
 
             <p className="mt-2 text-base font-black sm:text-lg">
               {group}
+            </p>
+          </div>
+
+          <div className="col-span-2 rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl sm:p-4">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-400">
+              Status
+            </p>
+
+            <p className="mt-2 text-sm font-bold text-green-400 sm:text-base">
+              {status ?? "Active"}
             </p>
           </div>
         </div>
