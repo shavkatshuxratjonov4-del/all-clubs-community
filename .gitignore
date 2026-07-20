@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Supabase
+supabase/.temp/
+
+# Local schema dumps
+schema.sql
+
+# Environment
+.env
+.env.local
+.env.*.local
+
